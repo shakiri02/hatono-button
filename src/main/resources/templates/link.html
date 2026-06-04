@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>元動画一覧 | 鳩乃はろんボタン</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #f7f6fd;
+      color: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .site-header {
+      background: #5b4fcf;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .site-title {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      margin-right: auto;
+    }
+    .header-links { display: flex; gap: 0.5rem; }
+    .header-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .header-link:hover { background: rgba(255,255,255,0.28); }
+    main { flex: 1; }
+    .page-header {
+      max-width: 960px;
+      margin: 2rem auto 1.5rem;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #7b6fd4;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .back-link:hover { text-decoration: underline; }
+    .page-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+    .link-card {
+      max-width: 960px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+    }
+    .link-list {
+      background: #fff;
+      border: 1px solid #c9c3f0;
+      border-radius: 14px;
+      overflow: hidden;
+      list-style: none;
+    }
+    .link-list li { border-bottom: 1px solid #e4e0f7; }
+    .link-list li:last-child { border-bottom: none; }
+    .link-list a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      color: #1a1a2e;
+      text-decoration: none;
+      transition: background 0.12s;
+    }
+    .link-list a:hover { background: #f0eeff; }
+    .link-list a:hover .video-title { color: #5b4fcf; }
+    .link-list a svg.yt-icon { flex-shrink: 0; color: #7b6fd4; margin-top: 2px; align-self: flex-start; }
+    
+    /* コンテンツ全体のラッパー */
+    .link-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .video-title {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 600;
+      transition: color 0.12s;
+    }
+    
+    /* ボイス一覧のタグデザイン */
+    .voice-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .voice-tag {
+      background: #f0eeff;
+      color: #5b4fcf;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #e4e0f7;
+      font-weight: normal;
+    }
+    .link-list a:hover .voice-tag {
+      background: #fff;
+      border-color: #c9c3f0;
+    }
+
+    .link-list a .arrow { color: #c9c3f0; flex-shrink: 0; transition: color 0.12s; align-self: center; }
+    .link-list a:hover .arrow { color: #7b6fd4; }
+    
+    .site-footer {
+      border-top: 1px solid #e4e0f7;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .footer-icon-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #f0eeff;
+      color: #7b6fd4;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .footer-icon-link:hover { background: #e0d9ff; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-title">鳩乃はろんボタン</span>
+  <div class="header-links">
+    <a class="header-link" href="https://www.youtube.com/@HatonoHaron" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      鳩乃はろん Ch.
+    </a>
+    <a class="header-link" href="https://x.com/Haron_Hatono" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      @Haron_Hatono
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="page-header">
+    <a class="back-link" href="/">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      ボタンページに戻る
+    </a>
+    <h1 class="page-title">元動画一覧</h1>
+  </div>
+
+  <div class="link-card">
+    <ul class="link-list">
+      <li><a href="https://www.youtube.com/shorts/479NR7CPCEI" target="_blank" rel="noopener">
+        <svg class="yt-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        <div class="link-content">
+          <span class="video-title">【競馬】生活費消滅⁉︎メタルスピードを信じすぎた新人VTuber #Shorts</span>
+          <div class="voice-tags">
+            <span class="voice-tag">脳汁ドバド鳩</span>
+          </div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a></li>
+      
+      <li><a href="https://www.youtube.com/watch?v=HVqwg7aO5nM&t=6209s" target="_blank" rel="noopener">
+        <svg class="yt-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        <div class="link-content">
+          <span class="video-title">【大晦日】2022年とさよならばいばい【新人Vtuber】</span>
+          <div class="voice-tags">
+            <span class="voice-tag">さよならばいばい</span>
+            <span class="voice-tag">ガキ使みてる？</span>
+          </div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a></li>
+
+      <li><a href="https://www.youtube.com/watch?v=-RFB-5aY7ps" target="_blank" rel="noopener">
+        <svg class="yt-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        <div class="link-content">
+          <span class="video-title">【あつまれどうぶつの森】睡眠にもよし！ゆったり雑談【新人Vtuber】</span>
+          <div class="voice-tags">
+            <span class="voice-tag">だなも</span>
+            <span class="voice-tag">おやすみ〜</span>
+          </div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a></li>
+
+      <li><a href="https://www.youtube.com/watch?v=-1biK-JcjEk&t=2009s" target="_blank" rel="noopener">
+        <svg class="yt-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        <div class="link-content">
+          <span class="video-title">【inbento後半】お弁当つくりきる！【新人Vtuber】</span>
+          <div class="voice-tags">
+            <span class="voice-tag">おいしそう</span>
+            <span class="voice-tag">できた！</span>
+          </div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a></li>
+
+      <li><a href="https://www.youtube.com/watch?v=dlhYozNHDIU" target="_blank" rel="noopener">
+        <svg class="yt-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        <div class="link-content">
+          <span class="video-title">【価値観どっち？】男性Vtuber二人に二択の質問を出し続けてたら価値観を理解することはできるのか【新人Vtuber】</span>
+          <div class="voice-tags">
+            <span class="voice-tag">えーどっちだろ</span>
+            <span class="voice-tag">なるほどね</span>
+          </div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a></li>
+
+      <li><a href="https://www.youtube.com/watch?v=btfDMCok_sY" target="_blank" rel="noopener">
+        <svg class="yt-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        <div class="link-content">
+          <span class="video-title">【朝配信】朝のしゅかぺんニュースのお時間です！天気予報と占いするよ～！ 23/11/29【新人Vtuber】</span>
+          <div class="voice-tags">
+            <span class="voice-tag">おはよう</span>
+            <span class="voice-tag">今日の天気は</span>
+            <span class="voice-tag">ラッキーアイテム</span>
+          </div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a></li>
+
+      <li><a href="https://www.youtube.com/watch?v=O66ERB3OaFw&t=2910s" target="_blank" rel="noopener">
+        <svg class="yt-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        <div class="link-content">
+          <span class="video-title">【朝配信】朝のしゅかぺんニュースのお時間です！天気予報と占いするよ～！ 23/11/27【新人Vtuber】</span>
+          <div class="voice-tags">
+            <span class="voice-tag">はろーん</span>
+            <span class="voice-tag">占いの時間</span>
+          </div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a></li>
+
+      <li><a href="https://www.youtube.com/watch?v=nUyqdlbKcKY" target="_blank" rel="noopener">
+        <svg class="yt-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+        <div class="link-content">
+          <span class="video-title">【珈琲配信 Lv.31☕】33分頃大音量注意！ごめんなさい！！！！【新人Vtuber】</span>
+          <div class="voice-tags">
+            <span class="voice-tag">大音量注意</span>
+            <span class="voice-tag">ごめんなさい！</span>
+            <span class="voice-tag">コーヒー美味しい</span>
+          </div>
+        </div>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+      </a></li>
+    </ul>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <a class="footer-icon-link" href="https://www.youtube.com/@HatonoHaron" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+  </a>
+  <a class="footer-icon-link" href="https://x.com/Haron_Hatono" target="_blank" rel="noopener" aria-label="X">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </a>
+</footer>
+
+</body>
+</html>

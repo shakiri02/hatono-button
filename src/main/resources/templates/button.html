@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>鳩乃はろんボタン</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-title">鳩乃はろんボタン</span>
+  <div class="header-links">
+    <a class="header-link" href="https://www.youtube.com/@HatonoHaron" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      鳩乃はろん Ch.
+    </a>
+    <a class="header-link" href="https://x.com/Haron_Hatono" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      @Haron_Hatono
+    </a>
+  </div>
+</header>
+
+<main>
+  <h1 class="main-title">鳩乃はろんボタン</h1>
+
+  <div class="share-row">
+    <a class="share-btn" href="https://x.com/intent/tweet?text=%E9%B3%A9%E4%B9%83%E3%81%AF%E3%82%8D%E3%82%93%E3%83%9C%E3%82%BF%E3%83%B3%20" target="_blank" rel="noopener">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      鳩乃はろんボタンを共有
+    </a>
+  </div>
+
+  <div class="notice">
+    作成者：しゃき（<a href="https://x.com/shakiri02" target="_blank" rel="noopener">@shakiri02</a>）<br>
+    このサイトは非公式ファンサイトです。<br>
+    ご本人様およびステララボ様とは一切関係ありません。<br>
+    問題がある場合は<a href="https://x.com/shakiri02" target="_blank" rel="noopener">作成者のX</a>、Githubまでご報告をお願いします。<br><br>
+    追加してほしいボイスは<a href="https://docs.google.com/forms/d/e/1FAIpQLScU8bDgJYGCASeltuS6sHRJrs1p3_s0-NEIooMZ8ZNyoJn2XQ/viewform" target="_blank" rel="noopener">Googleフォーム</a>へ！<br>
+  </div>
+
+<div style="margin: 0 auto 2.5rem; display: flex; gap: 16px; justify-content: center; max-width: 520px; padding: 0 1.5rem; box-sizing: border-box;">
+    <a href="https://www.youtube.com/@HatonoHaron" target="_blank" rel="noopener" style="flex: 1; text-align: center; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 16px; border: 1px solid var(--color-primary); border-radius: 24px; text-decoration: none; color: var(--color-primary); background: #fff; font-weight: 600; font-size: 14px; box-shadow: 0 2px 6px rgba(123, 111, 212, 0.08); transition: background 0.15s; line-height: 1.3;" onmouseover="this.style.background='var(--color-primary-bg)'" onmouseout="this.style.background='#fff'">元動画リンク一覧</a>
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScU8bDgJYGCASeltuS6sHRJrs1p3_s0-NEIooMZ8ZNyoJn2XQ/viewform" target="_blank" rel="noopener" style="flex: 1; text-align: center; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 16px; border: 1px solid var(--color-primary); border-radius: 24px; text-decoration: none; color: var(--color-primary); background: #fff; font-weight: 600; font-size: 14px; box-shadow: 0 2px 6px rgba(123, 111, 212, 0.08); transition: background 0.15s; line-height: 1.3;" onmouseover="this.style.background='var(--color-primary-bg)'" onmouseout="this.style.background='#fff'">Googleフォーム</a>
+</div>
+
+  <div class="content">
+    <!-- ====================================================
+         カテゴリとボタンの設定はここだけ編集すればOKです
+
+         各カテゴリの形式：
+         {
+           name: "カテゴリ名",
+           buttons: [
+             { label: "ボタンに表示する文字", file: "音声ファイル名(拡張子なし)" },
+             { label: "NEWバッジ付き", file: "ファイル名", isNew: true },
+           ]
+         },
+         ==================================================== -->
+    <div id="categories-container"></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <a class="footer-icon-link" href="https://www.youtube.com/@HatonoHaron" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+  </a>
+  <a class="footer-icon-link" href="https://x.com/Haron_Hatono" target="_blank" rel="noopener" aria-label="X">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </a>
+</footer>
+
+<audio id="audio"></audio>
+
+<script>
+  /* =====================================================
+     カテゴリとボタンの設定
+     ここを編集してカテゴリ・ボタンを追加・変更してください
+     ===================================================== */
+  const categories = [
+    {
+      name: "競馬（ジョッキー）",
+      buttons: [
+        { label: "川田①", file: "kawada1" },
+        { label: "ルメール①", file: "lemaire3" },
+        { label: "ルメール②", file: "lemaire1" },
+        { label: "ルメール③", file: "lemaire5" },
+        { label: "戸崎①", file: "tosaki1" },
+        { label: "瑠星①", file: "ryusei2" },
+        { label: "瑠星ファン", file: "ryusei1" },
+        { label: "武豊ファン", file: "yutaka1" },
+        { label: "戸崎を信じるね", file: "tosaki2" },
+        { label: "戸崎何してんだよ", file: "tosaki3", isrecommend: true },
+        { label: "ルメールは買っとくべきだな", file: "lemaire4", isrecommend: true },
+        { label: "ルメールは自動的に買え", file: "lemaire2" },
+        { label: "川田が怖いよ", file: "kawada2" },
+        { label: "今日の川田は怖いぞ", file: "kawada4" },
+        { label: "おい北村", file: "kitamura1", isrecommend: true },
+        { label: "中山は武史だから", file: "takeshi1" },
+        { label: "和生のあの位置からじゃ届かんて", file: "kazuo1" },
+      ]
+    },
+    {
+      name: "競馬（叫び声）",
+      buttons: [
+        { label: "差せ！①", file: "sase2" },
+        { label: "差せ！②", file: "sase1" },
+        { label: "残せ！", file: "nokose1" },
+        { label: "そのまま！", file: "sonomama1" },
+        { label: "かかった？", file: "kakatta1" },
+        { label: "落ち着け①", file: "ochitsuke1" },
+        { label: "落ち着け②", file: "ochitsuke2" },
+        { label: "頑張れ", file: "ganbare1" },
+        { label: "あー！", file: "a-1" },
+        { label: "おい！", file: "oi1" },
+        { label: "いけ！", file: "ike1" },
+        { label: "やめて！", file: "yamete1" },
+        { label: "うわー！", file: "uwaa1" },
+        { label: "え！？", file: "ee1" },
+        { label: "どっち！？", file: "docchi1" },
+        { label: "内枠だー！", file: "uchiwaku1" },
+        { label: "はぁ…", file: "haa1" },
+      ]
+    },
+
+    {
+      name: "今日から使えるギャンカストーク集",
+      buttons: [
+        { label: "大丈夫その位置？届く？", file: "sonoichitodoku" },
+        { label: "それ届くか？", file: "todokuka" },
+        { label: "位置調節", file: "ichichousetsu" },
+        { label: "前残り①", file: "maenokori1" },
+        { label: "前残り②", file: "maenokori2" },
+        { label: "伸　び　て　な　い", file: "nobitenai", isrecommend: true },
+        { label: "とんでもないことならんか？", file: "tondemonaikotonaranka" },
+        { label: "もうめちゃくちゃなんだけど", file: "moumechakucha" },
+        { label: "当たったよね！？（ﾊﾟｧﾝ）", file: "atattayone", isrecommend: true },
+        { label: "3着どっち？", file: "docchi2" },
+        { label: "写真判定待ち", file: "shashinhanteimachi1" },
+        { label: "まだ確定してない？", file: "kakuteimachi" },
+        { label: "同着になんないか？", file: "douchaku1", isNew: true },
+        { label: "最悪だ！", file: "saiakuda1" },
+        { label: "おしかったね", file: "oshikatta" },
+        { label: "つまんねー", file: "tsumanne", isrecommend: true },
+        { label: "買おうと思ったんだよなぁ", file: "kaoutoomotta" },
+        { label: "買った時だけこない", file: "kattatokidakekonai" },
+        { label: "トータルで負けてる", file: "totaldemaketeru" },
+        { label: "八百長だー！", file: "yaochou1" },
+        { label: "詐欺ー！", file: "sagi1" },
+        { label: "競馬やめる！", file: "keibayameru" },
+      ]
+    },
+    {
+      name: "暴言",
+      buttons: [
+        { label: "カスがいる", file: "kasu1" },
+        { label: "お前らが悪い", file: "omaeragawarui" },
+        { label: "綺麗すぎる水じゃ生きていけない魚", file: "sakana" },
+      ]
+    },
+    {
+      name: "その他",
+      buttons: [
+        { label: "脳汁ドバド鳩①", file: "noujirudobadobato2" },
+        { label: "脳汁ドバド鳩②", file: "noujirudobadobato1" },
+        { label: "喫煙①", file: "kitsuen1" },
+        { label: "おめでとう（勝ち）", file: "omedetou1" },
+        { label: "おめでとう（負け）", file: "omedetou2", isrecommend: true },
+        { label: "ソダシ", file: "sodashi1" },
+        { label: "ロブチェン", file: "lovcen1" },
+        { label: "激熱買い目公開中！", file: "gekiatsu" },
+        { label: "高配当続出！", file: "trackbias" },
+        { label: "プロ予想家", file: "proyosouka" },
+      ]
+    },
+    {
+      name: "煙の代償",
+      buttons: [
+        { label: "代償①", file: "seki1" },
+        { label: "代償②", file: "seki2" },
+      ]
+    },
+  ];
+  /* ===================================================== */
+
+  function playSound(file) {
+    var audio = document.getElementById("audio");
+    audio.src = "/audio/" + file + ".wav"; // ここを.wavに変更
+    audio.play();
+  }
+
+function buildCategories() {
+    var container = document.getElementById("categories-container");
+    categories.forEach(function(cat) {
+      var card = document.createElement("div");
+      card.className = "category-card";
+
+      var title = document.createElement("h2");
+      title.className = "category-title";
+      title.textContent = cat.name;
+      card.appendChild(title);
+
+      var group = document.createElement("div");
+      group.className = "button-group";
+
+      cat.buttons.forEach(function(btn) {
+        var b = document.createElement("button");
+        
+        // --- ここから修正：isNew と isrecommend の両方を判定してクラスを追加します ---
+        var className = "play-button";
+        if (btn.isNew) {
+          className += " is-new";
+        }
+        if (btn.isrecommend) {
+          className += " is-recommend";
+        }
+        b.className = className;
+        // --- ここまで修正 ---
+
+        b.textContent = btn.label;
+        b.setAttribute("data-file", btn.file);
+        b.addEventListener("click", function() {
+          playSound(btn.file);
+        });
+        group.appendChild(b);
+      });
+
+      card.appendChild(group);
+      container.appendChild(card);
+    });
+  }
+
+  window.addEventListener("load", buildCategories);
+</script>
+
+</body>
+</html>
