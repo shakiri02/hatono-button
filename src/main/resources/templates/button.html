@@ -36,7 +36,7 @@
     作成者：しゃき（<a href="https://x.com/shakiri02" target="_blank" rel="noopener">@shakiri02</a>）<br>
     このサイトは非公式ファンサイトです。<br>
     ご本人様およびステララボ様とは一切関係ありません。<br>
-    問題がある場合は<a href="https://x.com/shakiri02" target="_blank" rel="noopener">作成者のX</a>、Githubまでご報告をお願いします。<br><br>
+    問題がある場合は<a href="https://x.com/shakiri02" target="_blank" rel="noopener">作成者のX</a>、<a href="https://github.com/shakiri02/hatono-button" target="_blank" rel="noopener">Github</a>までご報告をお願いします。<br><br>
     追加してほしいボイスは<a href="https://docs.google.com/forms/d/e/1FAIpQLScU8bDgJYGCASeltuS6sHRJrs1p3_s0-NEIooMZ8ZNyoJn2XQ/viewform" target="_blank" rel="noopener">Googleフォーム</a>へ！<br>
   </div>
 
@@ -48,7 +48,7 @@
 
   <div class="content">
     <!-- ====================================================
-         カテゴリとボタンの設定はここだけ編集すればOKです
+         カテゴリとボタンの設定はここだけ編集すればOK
 
          各カテゴリの形式：
          {
@@ -77,7 +77,7 @@
 <script>
   /* =====================================================
      カテゴリとボタンの設定
-     ここを編集してカテゴリ・ボタンを追加・変更してください
+     ここを編集してカテゴリ・ボタンを追加・変更
      ===================================================== */
   const categories = [
     {
@@ -208,7 +208,7 @@ function buildCategories() {
       cat.buttons.forEach(function(btn) {
         var b = document.createElement("button");
         
-        // --- ここから修正：isNew と isrecommend の両方を判定してクラスを追加します ---
+        // --- isNew と isrecommend の両方を判定してクラスを ---
         var className = "play-button";
         if (btn.isNew) {
           className += " is-new";
@@ -217,7 +217,7 @@ function buildCategories() {
           className += " is-recommend";
         }
         b.className = className;
-        // --- ここまで修正 ---
+        // --- ここまで ---
 
         b.textContent = btn.label;
         b.setAttribute("data-file", btn.file);
