@@ -251,10 +251,13 @@ main {
 .site-footer {
   border-top: 1px solid #e4e0f7;
   padding: 1.5rem 2rem;
-  display: flex;
-  flex-direction: column; /* 追加 */
-  align-items: center;    /* justifyをalignに変更 */
+  text-align: center;
+}
+
+.footer-icons {
+  display: inline-flex;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .footer-icon-link {
