@@ -16,6 +16,24 @@
       .link-label { display: none; }
       .header-link { padding: 6px 10px; border-radius: 50%; }
     }
+
+    .visitor-counter {
+  text-align: center;
+  margin: 0 0 1.5rem;
+}
+
+#visitor-count {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #d9d3ff;
+  color: #5b4fcf;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 8px rgba(123, 111, 212, 0.12);
+}
   </style>
 </head>
 <body>
@@ -43,6 +61,10 @@
       鳩乃はろんボタンを共有
     </a>
   </div>
+
+  <div class="visitor-counter">
+  <span id="visitor-count">脳汁ドバド鳩数を集計中...</span>
+</div>
 
   <div class="notice">
     作成者：しゃき（<a href="https://x.com/shakiri02" target="_blank" rel="noopener">@shakiri02</a>）<br>
@@ -241,6 +263,14 @@
   }
 
   window.addEventListener("load", buildCategories);
+
+fetch('https://api.countapi.xyz/hit/hatono-button/noujiru')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('visitor-count').textContent =
+      'あなたは ' + data.value + ' 人目の脳汁ドバド鳩です';
+  });
+
 </script>
 
 </body>
