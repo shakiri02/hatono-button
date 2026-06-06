@@ -112,4 +112,9 @@ public class ButtonController {
     public String getLink() {
         return "link.html";
     }
+
+    @GetMapping("/predict")
+    public String getPredict() {
+        return "predict.html";
+    }
 }
