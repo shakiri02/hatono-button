@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>買い目一覧 | 鳩乃はろんボタン</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-primary: #7b6fd4;
+      --color-primary-dark: #6a5ec0;
+      --color-primary-bg: #e8e4ff;
+      --color-header-bg: #5b4fcf;
+    }
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      background: #f7f6fd;
+      color: #1a1a2e;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .site-header {
+      background: var(--color-header-bg);
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .site-title {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      margin-right: auto;
+      white-space: nowrap;
+    }
+    .header-links { display: flex; gap: 0.5rem; }
+    .header-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .header-link:hover { background: rgba(255,255,255,0.28); }
+    main { flex: 1; }
+    .page-header {
+      max-width: 960px;
+      margin: 1.25rem auto 1rem;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .back-link:hover { text-decoration: underline; }
+    .page-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+    .page-desc {
+      max-width: 960px;
+      margin: 0 auto 1.25rem;
+      padding: 0 1.5rem;
+    }
+    .page-desc-inner {
+      background: var(--color-primary-bg);
+      border-left: 4px solid var(--color-primary);
+      border-radius: 8px;
+      padding: 0.85rem 1.1rem;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .year-section {
+      max-width: 960px;
+      margin: 0 auto 1.5rem;
+      padding: 0 1.5rem;
+    }
+    .year-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--color-primary-bg);
+    }
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #c9c3f0;
+      border-radius: 14px;
+      overflow: hidden;
+      font-size: 13px;
+    }
+    thead { background: var(--color-primary); color: #fff; }
+    thead th {
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    tbody tr { border-bottom: 1px solid #e4e0f7; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #f0eeff; }
+    tbody td {
+      padding: 9px 12px;
+      vertical-align: middle;
+      line-height: 1.6;
+    }
+    .td-race { font-weight: 600; }
+    .td-predict { color: #444; white-space: pre-line; font-size: 13px; }
+    .td-result { color: #444; white-space: pre-line; font-size: 13px; }
+    @media (max-width: 600px) {
+      .link-label { display: none; }
+      .header-link { padding: 6px 10px; border-radius: 50%; }
+      .table-wrap { overflow-x: unset; }
+      table, thead, tbody, th, td { display: block; }
+      /* tableとtbody自体の背景・ボーダーを消してカードが独立して見えるように */
+      table { background: transparent; border: none; border-radius: 0; }
+      tbody { background: transparent; }
+      thead { display: none; }
+      tbody tr {
+        background: #fff;
+        border: 1px solid #c9c3f0;
+        border-radius: 12px;
+        margin-bottom: 0.75rem;
+        padding: 0.75rem 1rem;
+        box-shadow: 0 1px 4px rgba(91,79,207,0.07);
+      }
+      tbody tr:hover { background: #f0eeff; }
+      tbody td {
+        padding: 3px 0;
+        border: none;
+        font-size: 13px;
+      }
+      tbody td::before {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 2px;
+        margin-right: 6px;
+      }
+      .td-race {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #e4e0f7 !important;
+      }
+      .td-predict, .td-result {
+        margin-top: 4px;
+        white-space: pre-line;
+      }
+      .td-predict::before { content: "予想印"; display: block; font-size: 10px; font-weight: 700; color: var(--color-primary); margin-bottom: 2px; }
+      .td-result::before  { content: "結果";   display: block; font-size: 10px; font-weight: 700; color: var(--color-primary); margin-bottom: 2px; }
+      tbody tr {
+        display: grid;
+        grid-template-columns: 1fr 4.5rem;
+        grid-template-rows: auto auto;
+        column-gap: 0.75rem;
+      }
+      .td-race    { grid-column: 1 / -1; }
+      .td-predict { grid-column: 1; }
+      .td-result  { grid-column: 2; text-align: left; }
+    }
+    .site-footer {
+      border-top: 1px solid #e4e0f7;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: auto;
+    }
+    .footer-icon-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #f0eeff;
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .footer-icon-link:hover { background: #e0d9ff; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="site-title">鳩乃はろんボタン</span>
+  <div class="header-links">
+    <a class="header-link" href="https://www.youtube.com/@HatonoHaron" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      <span class="link-label">YouTube</span>
+    </a>
+    <a class="header-link" href="https://x.com/Haron_Hatono" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <span class="link-label">@Haron_Hatono</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="page-header">
+    <a class="back-link" href="/">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      ボタンページに戻る
+    </a>
+    <h1 class="page-title">予想印一覧</h1>
+  </div>
+
+  <div class="page-desc">
+    <div class="page-desc-inner">
+      <p>プロ予想家・鳩乃はろんさんが配信中に載せている予想印とレース結果を記載しています。</p>
+      <p>買い目ではなく予想印なのでご注意ください。<br>〇や△が複数馬についている場合は記載を省略しています。</p>
+    </div>
+  </div>
+
+  <!-- ========== 2026年 ========== -->
+  <div class="year-section">
+    <h2 class="year-heading">2026年</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>レース名</th>
+            <th>予想印</th>
+            <th>結果</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-race">天皇賞（春）</td>
+            <td class="td-predict">◎クロワデュノール
+〇アドマイヤテラ
+▲ヘデントール
+☆ホーエリート</td>
+            <td class="td-result">◎ 1着
+〇 3着
+▲ 5着
+☆ 14着</td>
+          </tr>
+          <tr>
+            <td class="td-race">かしわ記念</td>
+            <td class="td-predict">◎ウィルソンテソーロ
+☆ジョージテソーロ</td>
+            <td class="td-result">◎ 1着
+☆ 5着</td>
+          </tr>
+          <tr>
+            <td class="td-race">NHKマイルカップ</td>
+            <td class="td-predict">◎エコロアルバ
+〇ロデオドライブ
+▲レザベーション</td>
+            <td class="td-result">◎ 9着
+〇 1着
+▲ 6着</td>
+          </tr>
+          <tr>
+            <td class="td-race">ヴィクトリアマイル</td>
+            <td class="td-predict">◎エンブロイダリー
+〇クイーンズウォーク
+            <td class="td-result">◎ 1着
+〇 3着
+</td>
+          </tr>
+          <tr>
+            <td class="td-race">オークス</td>
+            <td class="td-predict">◎スターアニス
+〇ラフターラインズ
+▲アランカール
+☆リアライズルミナス
+            <td class="td-result">◎ 12着
+〇 3着
+▲ 8着
+☆ 4着
+</td>
+          </tr>
+          <tr>
+            <td class="td-race">日本ダービー</td>
+            <td class="td-predict">◎ロブチェン
+〇ゴーイントゥスカイ
+▲コンジェスタス
+☆マテンロウゲイル
+            <td class="td-result">◎ 1着
+〇 4着
+▲ 9着
+☆ 5着
+</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <a class="footer-icon-link" href="https://www.youtube.com/@HatonoHaron" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+  </a>
+  <a class="footer-icon-link" href="https://x.com/Haron_Hatono" target="_blank" rel="noopener" aria-label="X">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </a>
+</footer>
+
+</body>
+</html>
