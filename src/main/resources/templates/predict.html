@@ -137,7 +137,6 @@
       .header-link { padding: 6px 10px; border-radius: 50%; }
       .table-wrap { overflow-x: unset; }
       table, thead, tbody, th, td { display: block; }
-      /* tableとtbody自体の背景・ボーダーを消してカードが独立して見えるように */
       table { background: transparent; border: none; border-radius: 0; }
       tbody { background: transparent; }
       thead { display: none; }
@@ -188,17 +187,16 @@
       .td-result  { grid-column: 2; text-align: left; }
     }
     .site-footer {
-  border-top: 1px solid #e4e0f7;
-  padding: 1.5rem 2rem;
-  text-align: center;
-  margin-top: auto;
-}
-
-.footer-icons {
-  display: inline-flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
+      border-top: 1px solid #e4e0f7;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      margin-top: auto;
+    }
+    .footer-icons {
+      display: inline-flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
     .footer-icon-link {
       display: flex;
       align-items: center;
@@ -212,6 +210,24 @@
       transition: background 0.15s;
     }
     .footer-icon-link:hover { background: #e0d9ff; }
+    
+    /* カウンター用スタイル */
+    .visitor-counter {
+      text-align: center;
+      margin: 0 0 1.5rem;
+    }
+    #visitor-count {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #d9d3ff;
+      color: #5b4fcf;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      box-shadow: 0 2px 8px rgba(123, 111, 212, 0.12);
+    }
   </style>
 </head>
 <body>
@@ -231,19 +247,23 @@
 </header>
 
 <main>
-<div class="page-header" style="flex-direction: column; align-items: flex-start;">
-  <a class="back-link" href="/">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-    ボタンページに戻る
-  </a>
-  <h1 class="page-title" style="text-align: center; width: 100%;">鳩乃の予想まとめ</h1>
-</div>
+  <div class="page-header" style="flex-direction: column; align-items: flex-start;">
+    <a class="back-link" href="/">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      ボタンページに戻る
+    </a>
+    <h1 class="page-title" style="text-align: center; width: 100%;">鳩乃の予想まとめ</h1>
+  </div>
   
-    <div class="share-row">
+  <div class="share-row">
     <a class="share-btn" href="https://x.com/intent/tweet?text=%E9%B3%A9%E4%B9%83%E3%81%AF%E3%82%8D%E3%82%93%E3%81%AE%E7%AB%B6%E9%A6%AC%E4%BA%88%E6%83%B3%E3%81%BE%E3%81%A8%E3%82%81%F0%9F%95%8A%F0%9F%93%A2%20%23%E9%B3%A9%E4%B9%83%E3%81%AF%E3%82%8D%E3%82%93%E3%83%9C%E3%82%BF%E3%83%B3%0Ahttps%3A%2F%2Fwww.hatono-button.com%2Fpredict" target="_blank" rel="noopener">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       鳩乃の予想まとめを共有
     </a>
+  </div>
+
+  <div class="visitor-counter">
+    <span id="visitor-count">脳汁ドバド鳩の予想閲覧数を集計中...</span>
   </div>
 
   <div class="page-desc">
@@ -253,7 +273,6 @@
     </div>
   </div>
 
-  <!-- ========== 2026年 ========== -->
   <div class="year-section">
     <h2 class="year-heading">2026年</h2>
     <div class="table-wrap">
@@ -282,7 +301,7 @@
             <td class="td-predict">◎ウィルソンテソーロ
 ☆ジョージテソーロ</td>
             <td class="td-result">◎ <span style="color:red;">1着</span>
-☆ 5着</td>
+box-shadow: 0 2px 8px rgba(123, 111, 212, 0.12);</td>
           </tr>
           <tr>
             <td class="td-race">NHKマイルカップ</td>
@@ -324,13 +343,11 @@
 ▲ 9着
 ☆ 5着
 </td>
-
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-
 </main>
 
 <footer class="site-footer">
@@ -344,6 +361,18 @@
   </div>
   <p style="font-size: 12px; color: #888;">&#9400; Stellaparade Co., Ltd.</p>
 </footer>
+
+<script>
+  fetch('https://countapi.mileshilliard.com/api/v1/hit/hatono-button-predict')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('visitor-count').textContent =
+          'あなたは ' + data.value + ' 人目の脳汁ドバド鳩です（予想ページ）';
+    })
+    .catch(error => {
+      console.error('Error fetching count:', error);
+    });
+</script>
 
 </body>
 </html>
