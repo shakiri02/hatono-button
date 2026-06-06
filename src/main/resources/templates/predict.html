@@ -247,12 +247,12 @@
 </header>
 
 <main>
-  <div class="page-header" style="flex-direction: column; align-items: flex-start;">
-    <a class="back-link" href="/">
+  <div class="page-header" style="flex-direction: column; align-items: flex-start; margin-bottom: 1.5rem;">
+    <a class="back-link" href="/" style="margin-bottom: 0.5rem;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
       ボタンページに戻る
     </a>
-    <h1 class="page-title" style="text-align: center; width: 100%;">鳩乃の予想まとめ</h1>
+    <h1 class="page-title" style="text-align: center; width: 100%; font-size: 26px; padding: 0.5rem 0; letter-spacing: 0.02em;">鳩乃の予想まとめ</h1>
   </div>
   
   <div class="share-row">
@@ -367,7 +367,7 @@ box-shadow: 0 2px 8px rgba(123, 111, 212, 0.12);</td>
     .then(response => response.json())
     .then(data => {
       document.getElementById('visitor-count').textContent =
-          'あなたは ' + data.value + ' 羽目の脳汁ドバド鳩です（予想ページ）';
+          'このページを見た ' + data.value + ' 羽目の脳汁ドバド鳩です';
     })
     .catch(error => {
       console.error('Error fetching count:', error);
