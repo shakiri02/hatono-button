@@ -11,6 +11,12 @@
   <meta name="twitter:card" content="summary" />
   <link rel="icon" href="https://raw.githubusercontent.com/shakiri02/hatono-button/main/hato_images.png" />
   <link rel="stylesheet" href="styles.css">
+  <style>
+    @media (max-width: 600px) {
+      .link-label { display: none; }
+      .header-link { padding: 6px 10px; border-radius: 50%; }
+    }
+  </style>
 </head>
 <body>
 
@@ -19,11 +25,11 @@
   <div class="header-links">
     <a class="header-link" href="https://www.youtube.com/@HatonoHaron" target="_blank" rel="noopener">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
-      YouTube
+      <span class="link-label">YouTube</span>
     </a>
     <a class="header-link" href="https://x.com/Haron_Hatono" target="_blank" rel="noopener">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      @Haron_Hatono
+      <span class="link-label">@Haron_Hatono</span>
     </a>
   </div>
 </header>
@@ -42,28 +48,18 @@
     作成者：しゃき（<a href="https://x.com/shakiri02" target="_blank" rel="noopener">@shakiri02</a>）<br>
     このサイトは非公式ファンサイトです。<br>
     ご本人様およびステララボ様とは一切関係ありません。<br>
-    問題がある場合は<a href="https://x.com/shakiri02" target="_blank" rel="noopener">作成者のX</a>までご報告をお願いします。<br><br>
-    追加してほしいボイスは<a href="https://docs.google.com/forms/d/e/1FAIpQLScU8bDgJYGCASeltuS6sHRJrs1p3_s0-NEIooMZ8ZNyoJn2XQ/viewform" target="_blank" rel="noopener">Googleフォーム</a>へ<br>
+    問題がある場合は<a href="https://x.com/shakiri02" target="_blank" rel="noopener">作成者のX</a>にご報告をお願いします。<br><br>
+
+    <a href="https://www.hatono-button.com/predict" target="_blank" rel="noopener">鳩乃の予想まとめ</a>に鳩乃の予想印を掲載（試験中）。<br>
+    追加してほしいボイスは<a href="https://docs.google.com/forms/d/e/1FAIpQLScU8bDgJYGCASeltuS6sHRJrs1p3_s0-NEIooMZ8ZNyoJn2XQ/viewform" target="_blank" rel="noopener">Googleフォーム</a>へどうぞ！<br>
   </div>
 
 <div style="margin: 0 auto 2.5rem; display: flex; gap: 16px; justify-content: center; max-width: 520px; padding: 0 1.5rem; box-sizing: border-box;">
-    <a href="/link" style="flex: 1; text-align: center; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 16px; border: 1px solid var(--color-primary); border-radius: 24px; text-decoration: none; color: var(--color-primary); background: #fff; font-weight: 600; font-size: 14px; box-shadow: 0 2px 6px rgba(123, 111, 212, 0.08); transition: background 0.15s; line-height: 1.3;" onmouseover="this.style.background='var(--color-primary-bg)'" onmouseout="this.style.background='#fff'">元動画リンク一覧</a>
+    <a href="/predict" style="flex: 1; text-align: center; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 16px; border: 1px solid var(--color-primary); border-radius: 24px; text-decoration: none; color: var(--color-primary); background: #fff; font-weight: 600; font-size: 14px; box-shadow: 0 2px 6px rgba(123, 111, 212, 0.08); transition: background 0.15s; line-height: 1.3;" onmouseover="this.style.background='var(--color-primary-bg)'" onmouseout="this.style.background='#fff'">鳩乃の予想まとめ</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLScU8bDgJYGCASeltuS6sHRJrs1p3_s0-NEIooMZ8ZNyoJn2XQ/viewform" target="_blank" rel="noopener" style="flex: 1; text-align: center; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 16px; border: 1px solid var(--color-primary); border-radius: 24px; text-decoration: none; color: var(--color-primary); background: #fff; font-weight: 600; font-size: 14px; box-shadow: 0 2px 6px rgba(123, 111, 212, 0.08); transition: background 0.15s; line-height: 1.3;" onmouseover="this.style.background='var(--color-primary-bg)'" onmouseout="this.style.background='#fff'">Googleフォーム</a>
 </div>
 
   <div class="content">
-    <!-- ====================================================
-         カテゴリとボタンの設定はここだけ編集すればOK
-
-         各カテゴリの形式：
-         {
-           name: "カテゴリ名",
-           buttons: [
-             { label: "ボタンに表示する文字", file: "音声ファイル名(拡張子なし)" },
-             { label: "NEWバッジ付き", file: "ファイル名", isNew: true },
-           ]
-         },
-         ==================================================== -->
     <div id="categories-container"></div>
   </div>
 </main>
@@ -80,12 +76,8 @@
 <audio id="audio"></audio>
 
 <script>
-  /* =====================================================
-     カテゴリとボタンの設定
-     ここを編集してカテゴリ・ボタンを追加・変更
-     ===================================================== */
   const categories = [
-        {
+    {
       name: "競馬（叫び声）",
       buttons: [
         { label: "差せ！①", file: "sase2" },
@@ -193,7 +185,6 @@
       ]
     },
   ];
-  /* ===================================================== */
 
   function playSound(file) {
     var audio = document.getElementById("audio");
@@ -201,7 +192,7 @@
     audio.play();
   }
 
-function buildCategories() {
+  function buildCategories() {
     var container = document.getElementById("categories-container");
     categories.forEach(function(cat) {
       var card = document.createElement("div");
@@ -217,18 +208,10 @@ function buildCategories() {
 
       cat.buttons.forEach(function(btn) {
         var b = document.createElement("button");
-        
-        // --- isNew と isrecommend の両方を判定してクラスを ---
         var className = "play-button";
-        if (btn.isNew) {
-          className += " is-new";
-        }
-        if (btn.isrecommend) {
-          className += " is-recommend";
-        }
+        if (btn.isNew) className += " is-new";
+        if (btn.isrecommend) className += " is-recommend";
         b.className = className;
-        // --- ここまで ---
-
         b.textContent = btn.label;
         b.setAttribute("data-file", btn.file);
         b.addEventListener("click", function() {
