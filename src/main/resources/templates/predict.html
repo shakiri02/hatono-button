@@ -132,13 +132,22 @@
     tbody tr:hover { background: #f0eeff; }
     tbody td {
       padding: 9px 12px;
-      vertical-align: middle;
+      vertical-align: top;
       line-height: 1.6;
     }
-    .td-race { font-weight: 600; }
-    .td-predict { color: #444; white-space: pre-line; font-size: 13px; }
-    .td-result { color: #444; white-space: pre-line; font-size: 13px; }
-    .horse-popularity { font-size: 11px; color: #999; margin-left: 0.4em; }
+    .td-race { font-weight: 600; vertical-align: middle; }
+    .td-predict { color: #444; font-size: 13px; }
+    .td-result { color: #444; font-size: 13px; }
+    .horse-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      line-height: 1.6;
+    }
+    .horse-name { white-space: nowrap; }
+    .horse-pop { font-size: 11px; color: #999; white-space: nowrap; flex-shrink: 0; }
+    .result-row { line-height: 1.6; }
     @media (max-width: 600px) {
       .link-label { display: none; }
       .header-link { padding: 6px 10px; border-radius: 50%; }
@@ -154,20 +163,16 @@
         margin-bottom: 0.75rem;
         padding: 0.75rem 1rem;
         box-shadow: 0 1px 4px rgba(91,79,207,0.07);
+        display: grid;
+        grid-template-columns: 1fr 4.5rem;
+        grid-template-rows: auto auto;
+        column-gap: 0.75rem;
       }
       tbody tr:hover { background: #f0eeff; }
       tbody td {
         padding: 3px 0;
         border: none;
         font-size: 13px;
-      }
-      tbody td::before {
-        display: inline-block;
-        font-size: 11px;
-        font-weight: 700;
-        color: var(--color-primary);
-        margin-bottom: 2px;
-        margin-right: 6px;
       }
       .td-race {
         font-size: 15px;
@@ -176,22 +181,14 @@
         margin-bottom: 6px;
         padding-bottom: 6px;
         border-bottom: 1px solid #e4e0f7 !important;
+        grid-column: 1 / -1;
       }
-      .td-predict, .td-result {
-        margin-top: 4px;
-        white-space: pre-line;
-      }
-      .td-predict::before { content: "予想印"; display: block; font-size: 10px; font-weight: 700; color: var(--color-primary); margin-bottom: 2px; }
-      .td-result::before  { content: "結果";   display: block; font-size: 10px; font-weight: 700; color: var(--color-primary); margin-bottom: 2px; }
-      tbody tr {
-        display: grid;
-        grid-template-columns: 1fr 4.5rem;
-        grid-template-rows: auto auto;
-        column-gap: 0.75rem;
-      }
-      .td-race    { grid-column: 1 / -1; }
-      .td-predict { grid-column: 1; }
-      .td-result  { grid-column: 2; text-align: left; }
+      .td-predict { grid-column: 1; margin-top: 4px; }
+      .td-result  { grid-column: 2; text-align: left; margin-top: 4px; }
+      .td-predict::before { content: "予想印・人気"; display: block; font-size: 10px; font-weight: 700; color: var(--color-primary); margin-bottom: 2px; }
+      .td-result::before  { content: "結果"; display: block; font-size: 10px; font-weight: 700; color: var(--color-primary); margin-bottom: 2px; }
+      .horse-row { justify-content: space-between; gap: 4px; }
+      .horse-pop { font-size: 10px; }
     }
     .site-footer {
       border-top: 1px solid #e4e0f7;
@@ -217,8 +214,6 @@
       transition: background 0.15s;
     }
     .footer-icon-link:hover { background: #e0d9ff; }
-    
-    /* カウンター用スタイル */
     .visitor-counter {
       text-align: center;
       margin: 0 0 1.5rem;
@@ -261,7 +256,7 @@
     </a>
     <h1 class="page-title" style="text-align: center; width: 100%; font-size: 26px; padding: 0.5rem 0; letter-spacing: 0.02em;">🏇鳩乃の予想まとめ🏇</h1>
   </div>
-  
+
   <div class="share-row">
     <a class="share-btn" href="https://x.com/intent/tweet?text=%E9%B3%A9%E4%B9%83%E3%81%AF%E3%82%8D%E3%82%93%E3%81%AE%E7%AB%B6%E9%A6%AC%E4%BA%88%E6%83%B3%E3%81%BE%E3%81%A8%E3%82%81%F0%9F%95%8A%F0%9F%93%A2%20%23%E9%B3%A9%E4%B9%83%E3%81%AF%E3%82%8D%E3%82%93%E3%83%9C%E3%82%BF%E3%83%B3%0Ahttps%3A%2F%2Fwww.hatono-button.com%2Fpredict" target="_blank" rel="noopener">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -287,109 +282,166 @@
         <thead>
           <tr>
             <th>レース名</th>
-            <th>予想印</th>
+            <th>予想印・人気</th>
             <th>結果</th>
           </tr>
         </thead>
         <tbody>
+
           <tr>
             <td class="td-race">大阪杯</td>
-            <td class="td-predict">◎クロワデュノール<span class="horse-popularity">1番人気</span></td>
-            <td class="td-result">◎ <span style="color:red;">1着</span></td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎クロワデュノール</span><span class="horse-pop">1番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:red;">1着</span></div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">川崎記念</td>
-            <td class="td-predict">◎ディクテオン<span class="horse-popularity">2番人気</span></td>
-            <td class="td-result">◎ 5着</td>
-          </tr>     
-<tr>
-            <td class="td-race">桜花賞</td>
-            <td class="td-predict">◎スターアニス<span class="horse-popularity">1番人気</span>
-〇ディアダイアモンド<span class="horse-popularity">6番人気</span></td>
-            <td class="td-result">◎ <span style="color:red;">1着</span>
-〇 12着</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ディクテオン</span><span class="horse-pop">2番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 5着</div>
+            </td>
           </tr>
+
+          <tr>
+            <td class="td-race">桜花賞</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎スターアニス</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇ディアダイアモンド</span><span class="horse-pop">6番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:red;">1着</span></div>
+              <div class="result-row">〇 12着</div>
+            </td>
+          </tr>
+
           <tr>
             <td class="td-race">皐月賞</td>
-            <td class="td-predict">◎リアライズシリウス<span class="horse-popularity">4番人気</span>
-☆マテンロウゲイル<span class="horse-popularity">5番人気</span></td>
-            <td class="td-result">◎ <span style="color:blue;">2着</span>
-☆ 10着</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎リアライズシリウス</span><span class="horse-pop">4番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆マテンロウゲイル</span><span class="horse-pop">5番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:blue;">2着</span></div>
+              <div class="result-row">☆ 10着</div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">羽田盃</td>
-            <td class="td-predict">◎リアライズグリント<span class="horse-popularity">2番人気</span>
-☆ロウリュ<span class="horse-popularity">6番人気</span></td>
-            <td class="td-result">◎ 4着
-☆ <span style="color:green;">3着</span></td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎リアライズグリント</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆ロウリュ</span><span class="horse-pop">6番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 4着</div>
+              <div class="result-row">☆ <span style="color:green;">3着</span></div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">天皇賞（春）</td>
-            <td class="td-predict">◎クロワデュノール<span class="horse-popularity">1番人気</span>
-〇アドマイヤテラ<span class="horse-popularity">2番人気</span>
-▲ヘデントール<span class="horse-popularity">3番人気</span>
-☆ホーエリート<span class="horse-popularity">7番人気</span></td>
-            <td class="td-result">◎ <span style="color:red;">1着</span>
-〇 <span style="color:green;">3着</span>
-▲ 5着
-☆ 14着</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎クロワデュノール</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇アドマイヤテラ</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">▲ヘデントール</span><span class="horse-pop">3番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆ホーエリート</span><span class="horse-pop">7番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:red;">1着</span></div>
+              <div class="result-row">〇 <span style="color:green;">3着</span></div>
+              <div class="result-row">▲ 5着</div>
+              <div class="result-row">☆ 14着</div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">かしわ記念</td>
-            <td class="td-predict">◎ウィルソンテソーロ<span class="horse-popularity">3番人気</span>
-☆ジョージテソーロ<span class="horse-popularity">7番人気</span></td>
-            <td class="td-result">◎ <span style="color:red;">1着</span>
-☆ 5着</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ウィルソンテソーロ</span><span class="horse-pop">3番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆ジョージテソーロ</span><span class="horse-pop">7番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:red;">1着</span></div>
+              <div class="result-row">☆ 5着</div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">NHKマイルカップ</td>
-            <td class="td-predict">◎エコロアルバ<span class="horse-popularity">2番人気</span>
-〇ロデオドライブ<span class="horse-popularity">1番人気</span>
-▲レザベーション<span class="horse-popularity">11番人気</span></td>
-            <td class="td-result">◎ 9着
-〇 <span style="color:red;">1着</span>
-▲ 6着</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎エコロアルバ</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇ロデオドライブ</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">▲レザベーション</span><span class="horse-pop">11番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 9着</div>
+              <div class="result-row">〇 <span style="color:red;">1着</span></div>
+              <div class="result-row">▲ 6着</div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">ヴィクトリアマイル</td>
-            <td class="td-predict">◎エンブロイダリー<span class="horse-popularity">1番人気</span>
-〇クイーンズウォーク<span class="horse-popularity">3番人気</span></td>
-            <td class="td-result">◎ <span style="color:red;">1着</span>
-〇 <span style="color:green;">3着</span>
-</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎エンブロイダリー</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇クイーンズウォーク</span><span class="horse-pop">3番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:red;">1着</span></div>
+              <div class="result-row">〇 <span style="color:green;">3着</span></div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">オークス</td>
-            <td class="td-predict">◎スターアニス<span class="horse-popularity">1番人気</span>
-〇ラフターラインズ<span class="horse-popularity">2番人気</span>
-▲アランカール<span class="horse-popularity">6番人気</span>
-☆リアライズルミナス<span class="horse-popularity">10番人気</span></td>
-            <td class="td-result">◎ 12着
-〇 <span style="color:green;">3着</span>
-▲ 8着
-☆ 4着
-</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎スターアニス</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇ラフターラインズ</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">▲アランカール</span><span class="horse-pop">6番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆リアライズルミナス</span><span class="horse-pop">10番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 12着</div>
+              <div class="result-row">〇 <span style="color:green;">3着</span></div>
+              <div class="result-row">▲ 8着</div>
+              <div class="result-row">☆ 4着</div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">日本ダービー</td>
-            <td class="td-predict">◎ロブチェン<span class="horse-popularity">1番人気</span>
-〇ゴーイントゥスカイ<span class="horse-popularity">3番人気</span>
-▲コンジェスタス<span class="horse-popularity">6番人気</span>
-☆マテンロウゲイル<span class="horse-popularity">12番人気</span></td>
-            <td class="td-result">◎ <span style="color:red;">1着</span>
-〇 4着
-▲ 9着
-☆ 5着
-</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ロブチェン</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇ゴーイントゥスカイ</span><span class="horse-pop">3番人気</span></div>
+              <div class="horse-row"><span class="horse-name">▲コンジェスタス</span><span class="horse-pop">6番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆マテンロウゲイル</span><span class="horse-pop">12番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:red;">1着</span></div>
+              <div class="result-row">〇 4着</div>
+              <div class="result-row">▲ 9着</div>
+              <div class="result-row">☆ 5着</div>
+            </td>
           </tr>
+
           <tr>
             <td class="td-race">安田記念</td>
-            <td class="td-predict">◎ガイアフォース<span class="horse-popularity">1番人気</span>
-〇セイウンハーデス<span class="horse-popularity">4番人気</span></td>
-            <td class="td-result">◎ <span style="color:blue;">2着</span>
-〇 4着
-</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ガイアフォース</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇セイウンハーデス</span><span class="horse-pop">4番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:blue;">2着</span></div>
+              <div class="result-row">〇 4着</div>
+            </td>
           </tr>
+
         </tbody>
       </table>
     </div>
