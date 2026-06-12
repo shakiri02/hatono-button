@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>鳩乃のG1予想まとめ | 鳩乃はろんボタン</title>
-  <meta property="og:title" content="鳩乃のG1予想まとめ" />
-  <meta property="og:description" content="脳汁ドバド鳩こと鳩乃はろんさんのG1予想まとめです" />
+  <title>鳩乃の競馬予想まとめ | 鳩乃はろんボタン</title>
+  <meta property="og:title" content="鳩乃の競馬予想まとめ" />
+  <meta property="og:description" content="脳汁ドバド鳩こと鳩乃はろんさんの競馬予想まとめです" />
   <meta property="og:image" content="https://raw.githubusercontent.com/shakiri02/hatono-button/main/hato_images.png" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
@@ -82,7 +82,7 @@
     }
     .page-desc {
       max-width: 960px;
-      margin: 0 auto 1.25rem;
+      margin: 0 auto 1rem;
       padding: 0 1.5rem;
     }
     .page-desc-inner {
@@ -97,6 +97,42 @@
       flex-direction: column;
       gap: 0.4rem;
     }
+
+    /* ---- フィルターバー ---- */
+    .filter-bar {
+      max-width: 960px;
+      margin: 0 auto 1rem;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #444;
+      cursor: pointer;
+      user-select: none;
+      background: #fff;
+      border: 1px solid #c9c3f0;
+      border-radius: 20px;
+      padding: 5px 14px;
+      transition: background 0.15s;
+    }
+    .filter-label:hover { background: #f0eeff; }
+    .filter-label input[type="checkbox"] {
+      accent-color: var(--color-primary);
+      width: 14px;
+      height: 14px;
+    }
+    .filter-label.active {
+      background: var(--color-primary-bg);
+      font-weight: 600;
+      color: #3d2fb0;
+    }
+
     .year-section {
       max-width: 960px;
       margin: 0 auto 1.5rem;
@@ -148,6 +184,31 @@
     .horse-name { white-space: nowrap; }
     .horse-pop { font-size: 11px; color: #999; white-space: nowrap; flex-shrink: 0; }
     .result-row { line-height: 1.6; }
+
+    /* グレードバッジ */
+    .badge-g1, .badge-g2, .badge-g3 {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 1px 0;
+      margin-right: 5px;
+      vertical-align: middle;
+      width: 3.0em;
+      text-align: center;
+    }
+    .badge-g1 { background: #1976d2; color: #fff; }
+    .badge-g2 { background: #d71a1a; color: #fff; }
+    .badge-g3 { background: #268300; color: #fff; }
+
+    /* 該当なし行 */
+    .no-data-row td {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      padding: 1.5rem;
+    }
+
     @media (max-width: 600px) {
       .link-label { display: none; }
       .header-link { padding: 6px 10px; border-radius: 50%; }
@@ -189,7 +250,16 @@
       .td-result::before  { content: "結果"; display: block; font-size: 10px; font-weight: 700; color: var(--color-primary); margin-bottom: 2px; }
       .horse-row { justify-content: space-between; gap: 4px; }
       .horse-pop { font-size: 10px; }
+      .no-data-row {
+        background: #fff;
+        border: 1px solid #c9c3f0;
+        border-radius: 12px;
+        margin-bottom: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+      .no-data-row td { grid-column: unset; }
     }
+
     .site-footer {
       border-top: 1px solid #e4e0f7;
       padding: 1.5rem 2rem;
@@ -254,13 +324,13 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
       ボタンページに戻る
     </a>
-    <h1 class="page-title" style="text-align: center; width: 100%; font-size: 26px; padding: 0.5rem 0; letter-spacing: 0.02em;">🏇鳩乃のG1予想まとめ🏇</h1>
+    <h1 class="page-title" style="text-align: center; width: 100%; font-size: 26px; padding: 0.5rem 0; letter-spacing: 0.02em;">🏇鳩乃の競馬予想まとめ🏇</h1>
   </div>
 
   <div class="share-row">
     <a class="share-btn" href="https://x.com/intent/tweet?text=%E9%B3%A9%E4%B9%83%E3%81%AEG1%E4%BA%88%E6%83%B3%E3%81%BE%E3%81%A8%E3%82%81%F0%9F%95%8A%F0%9F%93%A2%20%23%E9%B3%A9%E4%B9%83%E3%81%AF%E3%82%8D%E3%82%93%E3%83%9C%E3%82%BF%E3%83%B3%0Ahttps%3A%2F%2Fwww.hatono-button.com%2Fpredict" target="_blank" rel="noopener">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      鳩乃のG1予想まとめを共有
+      鳩乃の競馬予想まとめを共有
     </a>
   </div>
 
@@ -270,9 +340,25 @@
 
   <div class="page-desc">
     <div class="page-desc-inner">
-      <p><s>プロ予想家</s>・脳汁ドバド鳩こと鳩乃はろんさんが配信やショートで載せたG1級レースの予想印と結果を記載しています。</p>
+      <p><s>プロ予想家</s>・脳汁ドバド鳩こと鳩乃はろんさんが配信やショートで載せた重賞レースの予想印と結果を記載しています。</p>
       <p>買い目ではなく予想印です。〇や△が複数馬についている場合は記載を省略しています。</p>
     </div>
+  </div>
+
+  <!-- フィルターバー（G1・G2・G3 独立チェック） -->
+  <div class="filter-bar">
+    <label class="filter-label active" id="label-all">
+      <input type="checkbox" id="chk-all" checked> ALL
+    </label>
+    <label class="filter-label active" id="label-g1">
+      <input type="checkbox" id="chk-g1" checked> G1
+    </label>
+    <label class="filter-label active" id="label-g2">
+      <input type="checkbox" id="chk-g2" checked> G2
+    </label>
+    <label class="filter-label active" id="label-g3">
+      <input type="checkbox" id="chk-g3" checked> G3
+    </label>
   </div>
 
   <div class="year-section">
@@ -288,8 +374,19 @@
         </thead>
         <tbody>
 
-          <tr>
-            <td class="td-race">大阪杯</td>
+          <tr data-grade="g3">
+            <td class="td-race"><span class="badge-g3">G3</span>ダービー卿チャレンジT</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎メタルスピード</span><span class="horse-pop">4番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 9着</div>
+            </td>
+          </tr>
+
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>大阪杯</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎クロワデュノール</span><span class="horse-pop">1番人気</span></div>
             </td>
@@ -298,8 +395,8 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">川崎記念</td>
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">Jpn1</span>川崎記念</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎ディクテオン</span><span class="horse-pop">2番人気</span></div>
             </td>
@@ -308,8 +405,18 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">桜花賞</td>
+          <tr data-grade="g2">
+            <td class="td-race"><span class="badge-g2">G2</span>ニュージーランドT</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ロデオドライブ</span><span class="horse-pop">1番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:blue;">2着</span></div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>桜花賞</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎スターアニス</span><span class="horse-pop">1番人気</span></div>
               <div class="horse-row"><span class="horse-name">〇ディアダイアモンド</span><span class="horse-pop">6番人気</span></div>
@@ -320,8 +427,29 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">皐月賞</td>
+          <tr data-grade="g3">
+            <td class="td-race"><span class="badge-g3">Jpn3</span>東京スプリント</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ママコチャ</span><span class="horse-pop">3番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 5着</div>
+            </td>
+          </tr>
+
+
+          <tr data-grade="g3">
+            <td class="td-race"><span class="badge-g3">G3</span>アンタレスS</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ブライアンセンス</span><span class="horse-pop">2番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 6着</div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>皐月賞</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎リアライズシリウス</span><span class="horse-pop">4番人気</span></div>
               <div class="horse-row"><span class="horse-name">☆マテンロウゲイル</span><span class="horse-pop">5番人気</span></div>
@@ -332,8 +460,30 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">羽田盃</td>
+          <tr data-grade="g2">
+            <td class="td-race"><span class="badge-g2">G2</span>青葉賞</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ブラックオリンピア</span><span class="horse-pop">1番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:green;">3着</span></div>
+            </td>
+          </tr>
+
+          <tr data-grade="g2">
+            <td class="td-race"><span class="badge-g2">G2</span>フローラS</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ラベルセーヌ</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">◯ゴバド</span><span class="horse-pop">7番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 5着</div>
+              <div class="result-row">〇 7着</div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">Jpn1</span>羽田盃</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎リアライズグリント</span><span class="horse-pop">2番人気</span></div>
               <div class="horse-row"><span class="horse-name">☆ロウリュ</span><span class="horse-pop">6番人気</span></div>
@@ -344,8 +494,8 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">天皇賞（春）</td>
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>天皇賞（春）</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎クロワデュノール</span><span class="horse-pop">1番人気</span></div>
               <div class="horse-row"><span class="horse-name">〇アドマイヤテラ</span><span class="horse-pop">2番人気</span></div>
@@ -360,8 +510,18 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">かしわ記念</td>
+          <tr data-grade="g2">
+            <td class="td-race"><span class="badge-g2">G2</span>名古屋グランプリ</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎オディロン</span><span class="horse-pop">5番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:blue;">2着</span></div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">Jpn1</span>かしわ記念</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎ウィルソンテソーロ</span><span class="horse-pop">3番人気</span></div>
               <div class="horse-row"><span class="horse-name">☆ジョージテソーロ</span><span class="horse-pop">7番人気</span></div>
@@ -372,8 +532,22 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">NHKマイルカップ</td>
+          <tr data-grade="g2">
+            <td class="td-race"><span class="badge-g2">G2</span>京都新聞杯</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎エムズビギン</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇ベレシート</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">▲サヴォアフェール</span><span class="horse-pop">4番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 7着</div>
+              <div class="result-row">〇 <span style="color:blue;">2着</span></div>
+              <div class="result-row">▲ 4着</div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>NHKマイルカップ</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎エコロアルバ</span><span class="horse-pop">2番人気</span></div>
               <div class="horse-row"><span class="horse-name">〇ロデオドライブ</span><span class="horse-pop">1番人気</span></div>
@@ -386,8 +560,34 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">ヴィクトリアマイル</td>
+          <tr data-grade="g2">
+            <td class="td-race"><span class="badge-g2">Jpn2</span>エンプレス杯</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎メモリアカフェ</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇テンカジョウ</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">▲アピーリングルック</span><span class="horse-pop">3番人気</span></div>
+              <div class="horse-row"><span class="horse-name">△マーブルマウンテン</span><span class="horse-pop">6番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:red;">1着</span></div>
+              <div class="result-row">〇 <span style="color:blue;">2着</span></div>
+              <div class="result-row">▲ 5着</div>
+              <div class="result-row">△ 7着</div>
+            </td>
+          </tr>
+
+          <tr data-grade="g3">
+            <td class="td-race"><span class="badge-g3">G3</span>新潟大賞典</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ドゥラドーレス</span><span class="horse-pop">1番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 4着</div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>ヴィクトリアマイル</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎エンブロイダリー</span><span class="horse-pop">1番人気</span></div>
               <div class="horse-row"><span class="horse-name">〇クイーンズウォーク</span><span class="horse-pop">3番人気</span></div>
@@ -398,8 +598,22 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">オークス</td>
+          <tr data-grade="g3">
+            <td class="td-race"><span class="badge-g3">G3</span>平安S</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ロードクロンヌ</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇リアライズカミオン</span><span class="horse-pop">3番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆ポッドロゴ</span><span class="horse-pop">13番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:red;">1着</span></div>
+              <div class="result-row">〇 12着</div>
+              <div class="result-row">☆ 7着</div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>オークス</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎スターアニス</span><span class="horse-pop">1番人気</span></div>
               <div class="horse-row"><span class="horse-name">〇ラフターラインズ</span><span class="horse-pop">2番人気</span></div>
@@ -414,8 +628,26 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">日本ダービー</td>
+          <tr data-grade="g3">
+            <td class="td-race"><span class="badge-g3">G3</span>葵S</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎エイシンディード</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇ショウナンカリス</span><span class="horse-pop">9番人気</span></div>
+              <div class="horse-row"><span class="horse-name">▲タガノアラリア</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">△ヒシアイラ</span><span class="horse-pop">6番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆クリエープキー</span><span class="horse-pop">16番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ 6着</div>
+              <div class="result-row">〇 10着</div>
+              <div class="result-row">▲ 7着</div>
+              <div class="result-row">△ <span style="color:blue;">2着</span></div>
+              <div class="result-row">☆ 13着</div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>日本ダービー</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎ロブチェン</span><span class="horse-pop">1番人気</span></div>
               <div class="horse-row"><span class="horse-name">〇ゴーイントゥスカイ</span><span class="horse-pop">3番人気</span></div>
@@ -430,8 +662,23 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">安田記念</td>
+          <tr data-grade="g2">
+            <td class="td-race"><span class="badge-g2">G2</span>目黒記念</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎ウィクトルウェルス</span><span class="horse-pop">1番人気</span></div>
+              <div class="horse-row"><span class="horse-name">〇ダノンシーマ</span><span class="horse-pop">2番人気</span></div>
+              <div class="horse-row"><span class="horse-name">☆ファイアンクランツ</span><span class="horse-pop">3番人気</span></div>
+
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ <span style="color:blue;">2着</span></div>
+              <div class="result-row">〇 <span style="color:green;">3着</span></div>
+              <div class="result-row">☆ <span style="color:red;">1着</span></div>
+            </td>
+          </tr>
+
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">G1</span>安田記念</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎ガイアフォース</span><span class="horse-pop">1番人気</span></div>
               <div class="horse-row"><span class="horse-name">〇セイウンハーデス</span><span class="horse-pop">4番人気</span></div>
@@ -442,8 +689,8 @@
             </td>
           </tr>
 
-          <tr>
-            <td class="td-race">東京ダービー</td>
+          <tr data-grade="g1">
+            <td class="td-race"><span class="badge-g1">Jpn1</span>東京ダービー</td>
             <td class="td-predict">
               <div class="horse-row"><span class="horse-name">◎フィンガー</span><span class="horse-pop">2番人気</span></div>
               <div class="horse-row"><span class="horse-name">〇シルバーレシオ</span><span class="horse-pop">1番人気</span></div>
@@ -452,6 +699,34 @@
               <div class="result-row">◎ <span style="color:red;">1着</span></div>
               <div class="result-row">〇 <span style="color:blue;">2着</span></div>
             </td>
+          </tr>
+
+          <!-- G2データはここに追加
+          <tr data-grade="g2">
+            <td class="td-race"><span class="badge-g2">G2</span>レース名</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎馬名</span><span class="horse-pop">X番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ X着</div>
+            </td>
+          </tr>
+          -->
+
+          <!-- G3データはここに追加
+          <tr data-grade="g3">
+            <td class="td-race"><span class="badge-g3">G3</span>レース名</td>
+            <td class="td-predict">
+              <div class="horse-row"><span class="horse-name">◎馬名</span><span class="horse-pop">X番人気</span></div>
+            </td>
+            <td class="td-result">
+              <div class="result-row">◎ X着</div>
+            </td>
+          </tr>
+          -->
+
+          <tr class="no-data-row" id="no-data-row" style="display:none;">
+            <td colspan="3">表示するレースがないですよ</td>
           </tr>
 
         </tbody>
@@ -473,6 +748,57 @@
 </footer>
 
 <script>
+  // フィルター機能
+  (function() {
+    const checks = {
+      g1: document.getElementById('chk-g1'),
+      g2: document.getElementById('chk-g2'),
+      g3: document.getElementById('chk-g3'),
+    };
+    const labels = {
+      g1: document.getElementById('label-g1'),
+      g2: document.getElementById('label-g2'),
+      g3: document.getElementById('label-g3'),
+    };
+    const chkAll = document.getElementById('chk-all');
+    const labelAll = document.getElementById('label-all');
+    const noDataRow = document.getElementById('no-data-row');
+
+    function updateAllCheckbox() {
+      const allChecked = Object.values(checks).every(c => c.checked);
+      chkAll.checked = allChecked;
+      labelAll.classList.toggle('active', allChecked);
+    }
+
+    function applyFilter() {
+      const show = { g1: checks.g1.checked, g2: checks.g2.checked, g3: checks.g3.checked };
+
+      Object.keys(show).forEach(grade => {
+        labels[grade].classList.toggle('active', show[grade]);
+      });
+
+      let visibleCount = 0;
+      document.querySelectorAll('tbody tr[data-grade]').forEach(tr => {
+        const grade = tr.dataset.grade;
+        const visible = !!show[grade];
+        tr.style.display = visible ? '' : 'none';
+        if (visible) visibleCount++;
+      });
+
+      noDataRow.style.display = visibleCount === 0 ? '' : 'none';
+      updateAllCheckbox();
+    }
+
+    chkAll.addEventListener('change', function() {
+      const checked = chkAll.checked;
+      Object.values(checks).forEach(c => { c.checked = checked; });
+      applyFilter();
+    });
+
+    Object.values(checks).forEach(chk => chk.addEventListener('change', applyFilter));
+  })();
+
+  // 訪問者カウンター
   fetch('https://countapi.mileshilliard.com/api/v1/hit/hatono-button-predict')
     .then(response => response.json())
     .then(data => {
