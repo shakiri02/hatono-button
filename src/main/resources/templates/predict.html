@@ -98,7 +98,67 @@
       flex-direction: column;
       gap: 0.4rem;
     }
-
+    
+    /* ---- 説明文・作成者ボックス ---- */
+.page-desc { display: flex; flex-direction: column; gap: 0.6rem; }
+.desc-lead { font-size: 14px; line-height: 1.9; color: #333; }
+.desc-notes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed #c9c3f0;
+}
+.desc-notes li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 12.5px;
+  color: #555;
+  line-height: 1.7;
+}
+.desc-notes li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+.credit-box {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 0.5rem auto 0;
+  background: #fff;
+  border: 1px solid #d9d3ff;
+  border-radius: 999px;
+  padding: 3px 12px 3px 4px;
+  font-size: 12px;
+}
+.credit-label {
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+.credit-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: #1a1a2e;
+  font-weight: 600;
+  text-decoration: none;
+}
+.credit-link:hover .credit-id { text-decoration: underline; }
+.credit-id { color: var(--color-primary); font-size: 12px; font-weight: 400; }
+    
     /* ---- フィルターバー ---- */
     .filter-bar {
       max-width: 960px;
